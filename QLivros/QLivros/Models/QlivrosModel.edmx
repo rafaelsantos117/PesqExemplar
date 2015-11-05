@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="qlivrosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Exemplar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTitulo" Type="bigint" Nullable="false" />
+          <Property Name="editora" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="edicao" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="idIniciante" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Historico">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idLeitor" Type="bigint" Nullable="false" />
+          <Property Name="idExemplar" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Leitor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idade" Type="int" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+          <Property Name="cidade" Type="varchar" MaxLength="30" />
+          <Property Name="bairro" Type="varchar" MaxLength="30" />
+          <Property Name="email" Type="varchar" MaxLength="30" />
+          <Property Name="telefone" Type="varchar" MaxLength="30" />
+          <Property Name="senha" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Titulo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_EXEMPLAR_idTitulo">
+          <End Role="Titulo" Type="Self.Titulo" Multiplicity="1" />
+          <End Role="Exemplar" Type="Self.Exemplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Titulo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Exemplar">
+              <PropertyRef Name="idTitulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LEITOR_idExemplar">
+          <End Role="Exemplar" Type="Self.Exemplar" Multiplicity="1" />
+          <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exemplar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Historico">
+              <PropertyRef Name="idExemplar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LEITOR_idLeitor">
+          <End Role="Leitor" Type="Self.Leitor" Multiplicity="1" />
+          <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leitor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Historico">
+              <PropertyRef Name="idLeitor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="qlivrosModelStoreContainer">
+          <EntitySet Name="Exemplar" EntityType="Self.Exemplar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historico" EntityType="Self.Historico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leitor" EntityType="Self.Leitor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Titulo" EntityType="Self.Titulo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EXEMPLAR_idTitulo" Association="Self.FK_EXEMPLAR_idTitulo">
+            <End Role="Titulo" EntitySet="Titulo" />
+            <End Role="Exemplar" EntitySet="Exemplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LEITOR_idExemplar" Association="Self.FK_LEITOR_idExemplar">
+            <End Role="Exemplar" EntitySet="Exemplar" />
+            <End Role="Historico" EntitySet="Historico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LEITOR_idLeitor" Association="Self.FK_LEITOR_idLeitor">
+            <End Role="Leitor" EntitySet="Leitor" />
+            <End Role="Historico" EntitySet="Historico" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="qlivrosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Exemplar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTitulo" Type="Int64" Nullable="false" />
+          <Property Name="editora" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="edicao" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idIniciante" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Titulo" Relationship="Self.FK_EXEMPLAR_idTitulo" FromRole="Exemplar" ToRole="Titulo" />
+          <NavigationProperty Name="Historico" Relationship="Self.FK_LEITOR_idExemplar" FromRole="Exemplar" ToRole="Historico" />
+        </EntityType>
+        <EntityType Name="Historico">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idLeitor" Type="Int64" Nullable="false" />
+          <Property Name="idExemplar" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Exemplar" Relationship="Self.FK_LEITOR_idExemplar" FromRole="Historico" ToRole="Exemplar" />
+          <NavigationProperty Name="Leitor" Relationship="Self.FK_LEITOR_idLeitor" FromRole="Historico" ToRole="Leitor" />
+        </EntityType>
+        <EntityType Name="Leitor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idade" Type="Int32" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cidade" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="bairro" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="telefone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="senha" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Historico" Relationship="Self.FK_LEITOR_idLeitor" FromRole="Leitor" ToRole="Historico" />
+        </EntityType>
+        <EntityType Name="Titulo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Exemplar" Relationship="Self.FK_EXEMPLAR_idTitulo" FromRole="Titulo" ToRole="Exemplar" />
+        </EntityType>
+        <Association Name="FK_EXEMPLAR_idTitulo">
+          <End Role="Titulo" Type="Self.Titulo" Multiplicity="1" />
+          <End Role="Exemplar" Type="Self.Exemplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Titulo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Exemplar">
+              <PropertyRef Name="idTitulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LEITOR_idExemplar">
+          <End Role="Exemplar" Type="Self.Exemplar" Multiplicity="1" />
+          <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exemplar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Historico">
+              <PropertyRef Name="idExemplar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LEITOR_idLeitor">
+          <End Role="Leitor" Type="Self.Leitor" Multiplicity="1" />
+          <End Role="Historico" Type="Self.Historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leitor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Historico">
+              <PropertyRef Name="idLeitor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLivrosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Exemplar" EntityType="Self.Exemplar" />
+          <EntitySet Name="Historico" EntityType="Self.Historico" />
+          <EntitySet Name="Leitor" EntityType="Self.Leitor" />
+          <EntitySet Name="Titulo" EntityType="Self.Titulo" />
+          <AssociationSet Name="FK_EXEMPLAR_idTitulo" Association="Self.FK_EXEMPLAR_idTitulo">
+            <End Role="Titulo" EntitySet="Titulo" />
+            <End Role="Exemplar" EntitySet="Exemplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LEITOR_idExemplar" Association="Self.FK_LEITOR_idExemplar">
+            <End Role="Exemplar" EntitySet="Exemplar" />
+            <End Role="Historico" EntitySet="Historico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LEITOR_idLeitor" Association="Self.FK_LEITOR_idLeitor">
+            <End Role="Leitor" EntitySet="Leitor" />
+            <End Role="Historico" EntitySet="Historico" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="qlivrosModelStoreContainer" CdmEntityContainer="QLivrosEntities">
+          <EntitySetMapping Name="Exemplar">
+            <EntityTypeMapping TypeName="qlivrosModel.Exemplar">
+              <MappingFragment StoreEntitySet="Exemplar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idTitulo" ColumnName="idTitulo" />
+                <ScalarProperty Name="editora" ColumnName="editora" />
+                <ScalarProperty Name="edicao" ColumnName="edicao" />
+                <ScalarProperty Name="idIniciante" ColumnName="idIniciante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Historico">
+            <EntityTypeMapping TypeName="qlivrosModel.Historico">
+              <MappingFragment StoreEntitySet="Historico">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idLeitor" ColumnName="idLeitor" />
+                <ScalarProperty Name="idExemplar" ColumnName="idExemplar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leitor">
+            <EntityTypeMapping TypeName="qlivrosModel.Leitor">
+              <MappingFragment StoreEntitySet="Leitor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="idade" ColumnName="idade" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="bairro" ColumnName="bairro" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Titulo">
+            <EntityTypeMapping TypeName="qlivrosModel.Titulo">
+              <MappingFragment StoreEntitySet="Titulo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,39 @@
+﻿@model IQueryable<QLivros.Models.Exemplar>
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+
+<h2>Lista de Exemplares</h2>
+
+<ul class="list-group">
+    @foreach (var exemplar in Model)
+    {
+        <li class="list-group-item">Titulo: @exemplar.Titulo.nome <br /> 
+                                    Edição: @exemplar.edicao <br />
+                                    Editora: @exemplar.editora
+        </li>
+        foreach (var i in exemplar.Historico)
+        {
+            <li class="list-group-item">
+                Localização: @i.Leitor.estado | @i.Leitor.cidade | @i.Leitor.bairro |
+
+                @Ajax.ActionLink("Visualizar dados", "InfoContato", "Exemplar", new { id = @i.Leitor.id },
+                            new AjaxOptions
+                            {
+                                UpdateTargetId = "dadosLeitor",
+                                InsertionMode = InsertionMode.Replace
+                            }, new { })
+            </li>
+        }
+        <br />
+    }
+</ul>
+
+<div id="dadosLeitor">
+    
+</div>
+
