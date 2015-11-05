@@ -13,7 +13,7 @@ namespace QLivros.Controllers
         ExemplarBusinessController exemplarBC = new ExemplarBusinessController();
         ProprietarioBusinessController proprietarioBC = new ProprietarioBusinessController();
 
-        // GET: Exemplar
+
         public ActionResult Lista(string titulo)
         {
             var retornoLista = exemplarBC.FiltrarTitulo(titulo);
