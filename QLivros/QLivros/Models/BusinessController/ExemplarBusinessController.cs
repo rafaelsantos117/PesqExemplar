@@ -9,9 +9,9 @@ namespace QLivros.Models.BusinessController
     public class ExemplarBusinessController
     {
         QLivrosEntities db = new QLivrosEntities();
-        public IQueryable<Exemplar> FiltrarTitulo(string titulo)
+        public IQueryable<TabExemplar> FiltrarTitulo(string titulo)
         {
-            var lista = db.Exemplar.Where(x => x.Titulo.nome == titulo);
+            var lista = db.TabExemplar.Where(x => x.TabTitulo.nmTitulo == titulo);
             return lista;
         }
     }

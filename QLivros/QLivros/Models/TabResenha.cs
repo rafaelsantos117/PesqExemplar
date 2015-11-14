@@ -12,20 +12,16 @@ namespace QLivros.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Exemplar
+    public partial class TabResenha
     {
-        public Exemplar()
-        {
-            this.Historico = new HashSet<Historico>();
-        }
+        public int idResenha { get; set; }
+        public string dsResenha { get; set; }
+        public string dsTipoResenha { get; set; }
+        public int fkIdLeitor { get; set; }
+        public int fkIdExemplar { get; set; }
+        public System.DateTime dtPublicacao { get; set; }
     
-        public long id { get; set; }
-        public long idTitulo { get; set; }
-        public string editora { get; set; }
-        public string edicao { get; set; }
-        public long idIniciante { get; set; }
-    
-        public virtual Titulo Titulo { get; set; }
-        public virtual ICollection<Historico> Historico { get; set; }
+        public virtual TabExemplar TabExemplar { get; set; }
+        public virtual TabLeitor TabLeitor { get; set; }
     }
 }

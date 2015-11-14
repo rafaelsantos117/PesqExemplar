@@ -12,13 +12,16 @@ namespace QLivros.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Historico
+    public partial class TabHistorico
     {
-        public long id { get; set; }
-        public long idLeitor { get; set; }
-        public long idExemplar { get; set; }
+        public int idHistorico { get; set; }
+        public System.DateTime dtHistorico { get; set; }
+        public Nullable<int> dsStatus { get; set; }
+        public Nullable<int> idReceptor { get; set; }
+        public int fkIdExemplar { get; set; }
+        public int fkIdLeitor { get; set; }
     
-        public virtual Exemplar Exemplar { get; set; }
-        public virtual Leitor Leitor { get; set; }
+        public virtual TabExemplar TabExemplar { get; set; }
+        public virtual TabLeitor TabLeitor { get; set; }
     }
 }

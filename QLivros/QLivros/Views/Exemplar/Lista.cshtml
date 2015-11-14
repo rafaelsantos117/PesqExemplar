@@ -1,4 +1,4 @@
-﻿@model IQueryable<QLivros.Models.Exemplar>
+﻿@model IQueryable<QLivros.Models.TabExemplar>
 @{
     ViewBag.Title = "Lista";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,28 +12,21 @@
 <ul class="list-group">
     @foreach (var exemplar in Model)
     {
-        <li class="list-group-item">Titulo: @exemplar.Titulo.nome <br /> 
-                                    Edição: @exemplar.edicao <br />
-                                    Editora: @exemplar.editora
+        <li class="list-group-item">Titulo: @exemplar.TabTitulo.nmTitulo <br /> 
+                                    Edição: @exemplar.dsEdicao <br />
+                                    Editora: @exemplar.nmEditora
         </li>
-        foreach (var i in exemplar.Historico)
+        foreach (var i in exemplar.TabHistorico)
         {
             <li class="list-group-item">
-                Localização: @i.Leitor.estado | @i.Leitor.cidade | @i.Leitor.bairro |
+                Localização: @i.TabLeitor.TabLogradouroEnd.TabBairro.TabCidade.TabEstado.nmEstado| @i.TabLeitor.TabLogradouroEnd.TabBairro.TabCidade.nmCidade | @i.TabLeitor.TabLogradouroEnd.TabBairro.nmBairro | <br />
+                Email: @i.TabLeitor.dsEmail <br />
+                Celular: @i.TabLeitor.numCel
 
-                @Ajax.ActionLink("Visualizar dados", "InfoContato", "Exemplar", new { id = @i.Leitor.id },
-                            new AjaxOptions
-                            {
-                                UpdateTargetId = "dadosLeitor",
-                                InsertionMode = InsertionMode.Replace
-                            }, new { })
             </li>
         }
         <br />
     }
 </ul>
 
-<div id="dadosLeitor">
-    
-</div>
 

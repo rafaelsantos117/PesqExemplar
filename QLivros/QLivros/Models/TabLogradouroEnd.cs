@@ -12,16 +12,18 @@ namespace QLivros.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Titulo
+    public partial class TabLogradouroEnd
     {
-        public Titulo()
+        public TabLogradouroEnd()
         {
-            this.Exemplar = new HashSet<Exemplar>();
+            this.TabLeitor = new HashSet<TabLeitor>();
         }
     
-        public long id { get; set; }
-        public string nome { get; set; }
+        public int idCepEnd { get; set; }
+        public string nmLogradouro { get; set; }
+        public int fkIdBairro { get; set; }
     
-        public virtual ICollection<Exemplar> Exemplar { get; set; }
+        public virtual TabBairro TabBairro { get; set; }
+        public virtual ICollection<TabLeitor> TabLeitor { get; set; }
     }
 }

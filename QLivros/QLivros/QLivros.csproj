@@ -124,33 +124,56 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BusinessController\ExemplarBusinessController.cs" />
-    <Compile Include="Models\BusinessController\ProprietarioBusinessController.cs" />
-    <Compile Include="Models\Exemplar.cs">
-      <DependentUpon>QlivrosModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Historico.cs">
-      <DependentUpon>QlivrosModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Leitor.cs">
-      <DependentUpon>QlivrosModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\QlivrosModel.Context.cs">
+    <Compile Include="Models\QLivrosModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QlivrosModel.Context.tt</DependentUpon>
+      <DependentUpon>QLivrosModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QlivrosModel.cs">
+    <Compile Include="Models\QLivrosModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QlivrosModel.tt</DependentUpon>
+      <DependentUpon>QLivrosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QlivrosModel.Designer.cs">
+    <Compile Include="Models\QLivrosModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QlivrosModel.edmx</DependentUpon>
+      <DependentUpon>QLivrosModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Titulo.cs">
-      <DependentUpon>QlivrosModel.tt</DependentUpon>
+    <Compile Include="Models\TabBairro.cs">
+      <DependentUpon>QLivrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TabCidade.cs">
+      <DependentUpon>QLivrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TabEstado.cs">
+      <DependentUpon>QLivrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TabExemplar.cs">
+      <DependentUpon>QLivrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TabHistorico.cs">
+      <DependentUpon>QLivrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TabLeitor.cs">
+      <DependentUpon>QLivrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TabLog.cs">
+      <DependentUpon>QLivrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TabLogradouroEnd.cs">
+      <DependentUpon>QLivrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TabMensagem.cs">
+      <DependentUpon>QLivrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TabResenha.cs">
+      <DependentUpon>QLivrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TabSalaChat.cs">
+      <DependentUpon>QLivrosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TabTitulo.cs">
+      <DependentUpon>QLivrosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -161,24 +184,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\QlivrosModel.Context.tt">
+    <Content Include="Models\QLivrosModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QlivrosModel.edmx</DependentUpon>
-      <LastGenOutput>QlivrosModel.Context.cs</LastGenOutput>
+      <DependentUpon>QLivrosModel.edmx</DependentUpon>
+      <LastGenOutput>QLivrosModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\QlivrosModel.tt">
+    <Content Include="Models\QLivrosModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QlivrosModel.edmx</DependentUpon>
-      <LastGenOutput>QlivrosModel.cs</LastGenOutput>
+      <DependentUpon>QLivrosModel.edmx</DependentUpon>
+      <LastGenOutput>QLivrosModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\QlivrosModel.edmx">
+    <EntityDeploy Include="Models\QLivrosModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QlivrosModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>QLivrosModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\QlivrosModel.edmx.diagram">
-      <DependentUpon>QlivrosModel.edmx</DependentUpon>
+    <Content Include="Models\QLivrosModel.edmx.diagram">
+      <DependentUpon>QLivrosModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -210,8 +233,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Exemplar\Lista.cshtml" />
-    <Content Include="Views\Exemplar\InfoContato.cshtml" />
-    <Content Include="Views\Exemplar\DadosContato.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

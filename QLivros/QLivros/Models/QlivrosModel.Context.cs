@@ -25,9 +25,17 @@ namespace QLivros.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Exemplar> Exemplar { get; set; }
-        public DbSet<Historico> Historico { get; set; }
-        public DbSet<Leitor> Leitor { get; set; }
-        public DbSet<Titulo> Titulo { get; set; }
+        public DbSet<TabBairro> TabBairro { get; set; }
+        public DbSet<TabCidade> TabCidade { get; set; }
+        public DbSet<TabEstado> TabEstado { get; set; }
+        public DbSet<TabExemplar> TabExemplar { get; set; }
+        public DbSet<TabHistorico> TabHistorico { get; set; }
+        public DbSet<TabLeitor> TabLeitor { get; set; }
+        public DbSet<TabLog> TabLog { get; set; }
+        public DbSet<TabLogradouroEnd> TabLogradouroEnd { get; set; }
+        public DbSet<TabMensagem> TabMensagem { get; set; }
+        public DbSet<TabResenha> TabResenha { get; set; }
+        public DbSet<TabSalaChat> TabSalaChat { get; set; }
+        public DbSet<TabTitulo> TabTitulo { get; set; }
     }
 }
